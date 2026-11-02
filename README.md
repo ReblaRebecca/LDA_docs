@@ -37,4 +37,4 @@ apart lets the stopword list be reused for other Swedish texts.
 
 ## License
 
-Licensed under the MIT License; see the `MIT License` file.
+Licensed under the MIT License; see `LICENSE`.
