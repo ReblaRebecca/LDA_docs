@@ -34,3 +34,7 @@ apart lets the stopword list be reused for other Swedish texts.
 - Bird, S., Klein, E. and Loper, E. (2009). *Natural Language Processing with Python.* O'Reilly. (NLTK)
 - Qi, P., Zhang, Y., Zhang, Y., Bolton, J. and Manning, C. D. (2020). Stanza: A Python Natural Language
   Processing Toolkit for Many Human Languages. *ACL 2020: System Demonstrations.*
+
+## License
+
+Licensed under the MIT License; see the `MIT License` file.
