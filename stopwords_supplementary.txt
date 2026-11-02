@@ -1,0 +1,181 @@
+# Supplementary Swedish stopwords
+#
+# Added to NLTK's Swedish stopword list (114 words, nltk.corpus.stopwords.words('swedish')) in
+# preprocessing/05_remove_stopwords.py. Applied to the lemmatized, normalized text, so most entries are
+# lemma forms. One word per line, grouped as in the code, with the reason for each group.
+# Words already in the NLTK list are marked (in NLTK).
+
+# Add Swedish general words missing from NLTK
+# Parliamentary document abbreviations (metadata).
+# Not listed, because they are education-policy content: fn (FN), eg (EG), ky (kvalificerad
+# yrkesutbildning), ib (International Baccalaureate)
+ar
+ca
+ds
+dvs
+et
+etc
+frn
+iq
+mr
+of
+osv
+qz
+resp
+ub
+uö
+
+# Auxiliary verbs
+blir    # (in NLTK)
+blivit    # (in NLTK)
+ska
+skall
+varit    # (in NLTK)
+
+# Prepositions and connectors (too generic for content)
+del
+dock
+enligt
+fall
+fler
+ge
+genom
+kommer
+ta
+
+# Generic adjectives and verbs (too vague for education policy content)
+behöver
+mer
+nya
+olika
+vill
+
+# Generic action verbs and helpers (identified from LDA analysis)
+gjort
+gjorts
+gör
+göra
+håll
+håller
+rör
+
+# Generic prepositions/adverbs
+all
+alls
+inför
+
+# Generic manner/state/existence verbs and adjectives (sätt in boilerplate)
+dels
+finna
+finnas
+sätts
+visar
+visat
+viss
+är    # (in NLTK)
+
+# Additional generic adjectives, verbs, adverbs, conjunctions
+bara
+bra
+både
+går
+hos
+rätt
+samt
+se
+ser
+stora
+
+# More filler words and generic discourse markers (some in boilerplate)
+bland
+exempel
+flera
+flesta
+första
+hela
+heller
+komma
+kring
+mycket    # (in NLTK)
+själva
+såväl
+trots
+även
+
+# Short generic words: 'te' (te sig, appear), 'ut' (out).
+te
+ut    # (in NLTK)
+
+# Scanner misreading of 'som' in scanned motions
+sorn
+
+# Generic words in more than half of the motions (removed until now only by the vectorizer's max_df)
+annan
+därför
+få
+många
+möjlighet
+också
+viktig
+
+# Generic words in 30-50% of the motions: no topic content ('god' as 'bra'; 'grund' from 'på grund av')
+egen
+god
+grund
+lite
+ske
+
+# Generic language of political argument ('öka ...', 'skapa förutsättningar'), in the top words of most topics
+förutsättning
+kräva
+skapa
+öka
+ökad
+
+# Function words (adverbs, conjunctions, prepositions, quantifiers) in 10-30% of the motions
+alltså
+avseende
+båda
+däremot
+därmed
+emellertid
+enbart
+exempelvis
+främst
+följande
+just
+liksom
+medan
+oavsett
+respektive
+samtlig
+således
+tyvärr
+ur
+utöver
+
+# Lemmas of abbreviations and symbols: Stanza lemmatizes 'ca' to 'circa' and '%' to 'procent'
+# ('procent' is boilerplate, but the phrase list cannot match a bare symbol)
+circa
+procent
+
+# The language of the motion's request ('regeringen bör överväga ...')
+angelägen
+föreslå
+konstatera
+överväga
+
+# Lemma forms of the inflected stop words above, as produced by Stanza (text is lemmatized in step 2)
+behöva
+gå
+hel
+hålla
+kunna
+mången
+ny
+olik
+röra
+stor
+sätta
+vilja
+visa

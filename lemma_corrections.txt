@@ -1,0 +1,50 @@
+# Corrections for known Stanza lemma errors, applied in 03_remove_boilerplate.py
+#
+# Stanza guesses lemmas for words it has not seen in training, and some guesses are truncated
+# ('kompetens' -> 'kompet'). This list corrects those known errors; it does not replace the
+# lemmatizer.
+#
+# Format: one pair per line, the wrong lemma then the correct lemma, separated by whitespace.
+# A leading '*' on the wrong lemma also corrects it at the end of a compound
+# ('*kompet kompetens': gymnasiekompet -> gymnasiekompetens, it-kompet -> it-kompetens).
+# Only use '*' after checking the compounds: 'anslagen' must not get it ('sammanslagen').
+# After editing, re-run steps 03-05 (no need to re-run Stanza).
+
+*kompet         kompetens       # kompetens; compounds: gymnasie-, lärar-, yrkes-, IT-, HBT-kompetens (123 lemmas)
+lärosät         lärosäte        # lärosäten, lärosätet
+anslagen        anslag          # anslaget; otherwise split from 'anslag'
+läraryrk        läraryrke       # läraryrket
+trakasserie     trakasseri      # trakasserier
+handlingspla    handlingsplan   # handlingsplan
+kåre            kår             # kåren, kårerna
+spelregl        spelregel       # spelregler
+barnsköta       barnskötare     # barnskötarna
+*bibliotekarium bibliotekarie   # bibliotekarier; compounds: skol-, folkbibliotekarier
+stärk           stärka          # stärkt
+universitetskanslersämbetsämbetsämbetsämbetsämbets universitetskanslersämbete   # Universitetskanslersämbetet, -ets (195 words; Stanza repeats the stem)
+# Definite or plural forms left as the lemma, and truncated lemmas, where the base form also occurs
+# (checked against the final text: both forms frequent; '*' only where every compound is the same word)
+*verket         verk            # Skolverket, Högskoleverket, regelverket, nätverket (skolverket 4,854 against skolverk 1,563)
+lärosäten       lärosäte        # lärosätena (2,108)
+*institutet     institut        # institutet, Skolforskningsinstitutet, Folkhälsoinstitutet
+*akademin       akademi         # akademin
+*ekonomin       ekonomi         # ekonomin, nationalekonomin
+mitthögskolan   mitthögskola    # Mitthögskolan
+ekeskolan       ekeskola        # Ekeskolan
+*huvudma        huvudman        # huvudman, huvudmän; compounds: skol-, sjukvårds-, utbildningshuvudman (2,422 + 301)
+*fakult         fakultet        # fakultet, fakulteterna; compounds: universitets-, skogsfakultet
+*timpla         timplan         # timplan
+*trende         trend           # trenden, trender
+*kvalit         kvalitet        # kvalitén
+*linj           linje           # compounds: grundskollärar-, förskollärar-, vårdlinje
+*departemen     departement     # Utbildningsdepartementets, Arbetsmarknadsdepartementet
+välfärde        välfärd         # välfärden
+kärnämn         kärnämne        # kärnämnen, kärnämnet
+funktionshindrade funktionshindrad  # funktionshindrade (noun use)
+studerandes     studerande      # studerandes
+forskar         forskare        # forskaren, forskarens
+tank            tanke           # tanken
+möt             möte            # möten
+sammanhålle     sammanhållen    # sammanhållna
+giv             given           # givna
+låne            lån             # lånen
