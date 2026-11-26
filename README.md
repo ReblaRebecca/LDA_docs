@@ -1,9 +1,10 @@
-# Preprocessing lists: Swedish parliamentary motions on education
+# Swedish parliamentary motions on education: preprocessing lists and topic chain explorer
 
 Word lists used to preprocess Swedish parliamentary motions referred to the Committee on Education
-(Utbildningsutskottet, UbU), sessions 1985/86–2025/26, before topic modelling with LDA.
-They belong to the project report *Tracing Thematic Change in Swedish Parliamentary Motions on Education,
-1986–2026* (Rebecca Lagerkvist, Stockholm University, LIS070, autumn 2026).
+(Utbildningsutskottet, UbU), sessions 1985/86–2025/26, before topic modelling with LDA, and the explorer of
+the resulting topic chains. They belong to the project report *Tracing Thematic Change Reproducibly in
+Swedish Parliamentary Motions on Education, 1985/86–2025/26* (Rebecca Lagerkvist, Stockholm University,
+LIS070, autumn 2026).
 
 ## Files
 
@@ -13,7 +14,19 @@ They belong to the project report *Tracing Thematic Change in Swedish Parliament
 | `lemma_corrections.txt` | 36 corrections | Known errors of the Stanza lemmatizer, corrected after lemmatization |
 | `stopwords_supplementary.txt` | 135 words (129 not in NLTK) | Added to NLTK's Swedish stopword list (114 words) |
 
-Each file explains its format in its header; lines starting with `#` are comments.
+| `period_explorer.html` | 8 chains × 4 time bins | The topic chain explorer (see below) |
+
+Each list explains its format in its header; lines starting with `#` are comments.
+
+## Topic chain explorer
+
+`period_explorer.html` shows the LDA models of the four time bins (8 topics each) as eight topic chains, in
+the order of the report's chain figure. For each topic: a word cloud of its 20 most relevant words, its share
+of the bin's motions and its seed stability (in how many of 4 other seed models it is found again). Each chain
+shows its number of strong links (cosine similarity of at least 0.50); a weak link is marked with its cosine.
+
+The page is self-contained: download it and open it in a browser (an internet connection is needed only for
+the fonts). GitHub shows the file as source code, not as a page.
 
 ## Order of the steps
 
