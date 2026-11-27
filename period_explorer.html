@@ -315,14 +315,14 @@
     return art;
   }
 
-  // Same order as the report's chain figure: strong links, then stable topics (3 or 4 of 4), then the seed models the
+  // Same order as the report's chain figure: stable topics (3 or 4 of 4), then strong links, then the seed models the
   // topics are found in (in total); the weakest link only breaks a remaining tie
   function render() {
     const stableTopics = r => r.cells.filter(c => c.stability && c.stability.found >= c.stability.of - 1).length;
     const foundTotal = r => r.cells.reduce((n, c) => n + (c.stability ? c.stability.found : 0), 0);
     const weakest = r => Math.min(...r.links);
     const rows = DATA.rows.slice().sort((a, b) =>
-      strongLinks(b) - strongLinks(a) || stableTopics(b) - stableTopics(a) || foundTotal(b) - foundTotal(a) || weakest(b) - weakest(a));
+      stableTopics(b) - stableTopics(a) || strongLinks(b) - strongLinks(a) || foundTotal(b) - foundTotal(a) || weakest(b) - weakest(a));
     grid.replaceChildren(...rows.map(card));
   }
 
@@ -340,8 +340,8 @@
     // How the chains are ranked (the sort in render(), the order of the report's chain figure)
     `<div><p><strong>Order of the chains:</strong> a chain links the matched topics of adjacent periods. ` +
     `Chains are ranked by</p><ul>` +
-    `<li><span>1. Most strong links (cosine of at least ${DATA.linkCosine.toFixed(2)})</span></li>` +
-    `<li><span>2. Most stable topics (found in at least 3 of 4 other seed models)</span></li>` +
+    `<li><span>1. Most stable topics (found in at least 3 of 4 other seed models)</span></li>` +
+    `<li><span>2. Most strong links (cosine of at least ${DATA.linkCosine.toFixed(2)})</span></li>` +
     `<li><span>3. Most seed models the topics are found in</span></li></ul>` +
     `<p>A weak link is marked in the period after it.</p></div>`;
   // Measure words only once the display font has loaded, so the layout matches what is drawn
