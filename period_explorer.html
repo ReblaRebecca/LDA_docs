@@ -172,7 +172,10 @@
 
   const pct = v => (v * 100).toFixed(1) + '%';
   // Similarity with two decimals, or three when two would round across the chain criterion (0.498 is not 0.50)
-  const sim = c => ((c < DATA.linkCosine) === (+c.toFixed(2) < DATA.linkCosine) ? c.toFixed(2) : c.toFixed(3));
+  // Thresholds are compared at two decimals (rounded half up), as the report: 0.497 counts as 0.50
+  const r2 = c => Math.round(c * 100 + 1e-9) / 100;
+  const sim = c => r2(c).toFixed(2);
+  const reaches = (c, t) => r2(c) >= t;
   const canvas = document.createElement('canvas').getContext('2d');
   function measure(text, size, weight) {
     canvas.font = `${weight} ${size}px "Bricolage Grotesque", "Avenir Next", "Segoe UI", sans-serif`;
@@ -274,10 +277,10 @@
       chip.title = `Found again in ${found} of ${of} models of this period fitted with other random seeds`;
       head.appendChild(chip);
     }
-    const strong = c => c !== undefined && c >= DATA.linkCosine;
+    const strong = c => c !== undefined && reaches(c, DATA.linkCosine);
     if (strong(row.links[p - 1]) || strong(row.links[p])) div.classList.add('joined');
     // A weak link to the previous period breaks the row; its cosine is shown in the note
-    if (p > 0 && row.links[p - 1] < DATA.linkCosine) {
+    if (p > 0 && !reaches(row.links[p - 1], DATA.linkCosine)) {
       div.classList.add('after-break');
       head.appendChild(span('break-note', `Alignment uncertain: not linked to ${DATA.periods[p - 1]} (similarity ${sim(row.links[p - 1])})`));
     }
@@ -293,7 +296,7 @@
   }
 
   // Links are judged one by one: strong at linkCosine or more
-  const strongLinks = r => r.links.filter(c => c >= DATA.linkCosine).length;
+  const strongLinks = r => r.links.filter(c => reaches(c, DATA.linkCosine)).length;
 
   function card(row) {
     const art = document.createElement('article');
