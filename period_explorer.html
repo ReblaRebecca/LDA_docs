@@ -302,7 +302,7 @@
     head.className = 'chain-head';
     const h2 = document.createElement('h2');
     h2.textContent = row.name || `Chain ${row.row}`;
-    head.append(h2, span('meta', `Strong links: ${strongLinks(row)} of ${row.links.length}`));
+    head.append(h2);
     const periods = document.createElement('div');
     periods.className = 'periods';
     const persist = persistence(row);
@@ -331,7 +331,14 @@
     `<div><p><strong>Word colour:</strong> in how many of the chain's ${DATA.periods.length} periods the word is among the topic's top words. ` +
     `Word size: the word's probability in the topic.</p><ul class="key">` +
     [4, 3, 2, 1].map(k => `<li><span><i class="swatch p${k}"></i>${k === DATA.periods.length ? 'All' : k} of ${DATA.periods.length} periods</span></li>`).join('') +
-    `</ul></div>`;
+    `</ul></div>` +
+    // How the chains are ranked (the sort in render(), the order of the report's chain figure)
+    `<div><p><strong>Order of the chains:</strong> as in the report. A chain links the matched topics of adjacent periods. ` +
+    `Chains are ranked by</p><ul>` +
+    `<li><span>1. Most strong links (cosine of at least ${DATA.linkCosine.toFixed(2)})</span></li>` +
+    `<li><span>2. Most stable topics (found in at least 3 of 4 other seed models)</span></li>` +
+    `<li><span>3. Highest weakest link</span></li></ul>` +
+    `<p>A weak link is marked in the period after it.</p></div>`;
   // Measure words only once the display font has loaded, so the layout matches what is drawn
   const fontsReady = document.fonts && document.fonts.load
     ? Promise.all([document.fonts.load('500 20px "Bricolage Grotesque"'), document.fonts.load('700 20px "Bricolage Grotesque"')]).catch(() => {})

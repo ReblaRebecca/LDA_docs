@@ -22,11 +22,13 @@ Each list explains its format in its header; lines starting with `#` are comment
 
 `period_explorer.html` shows the LDA models of the four time bins (8 topics each) as eight topic chains, in
 the order of the report's chain figure. For each topic: a word cloud of its 20 most relevant words, its share
-of the bin's motions and its seed stability (in how many of 4 other seed models it is found again). Each chain
-shows its number of strong links (cosine similarity of at least 0.50); a weak link is marked with its cosine.
+of the bin's motions and its seed stability (in how many of 4 other seed models it is found again). A weak
+link (cosine similarity below 0.50) is marked with its cosine.
 
-The page is self-contained: download it and open it in a browser (an internet connection is needed only for
-the fonts). GitHub shows the file as source code, not as a page.
+**Open it as a web page:** https://reblarebecca.github.io/LDA_docs/period_explorer.html
+
+(GitHub's file view shows the file as source code, not as a page. The page is self-contained, so the file can
+also be downloaded and opened in a browser; an internet connection is needed only for the fonts.)
 
 ## Order of the steps
 
